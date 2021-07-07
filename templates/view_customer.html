@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}VIEW CUSTOMER{% endblock title %}
+
+{% block body %}
+
+<div class="container-fluid px-0">
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active ">
+                <img src="https://source.unsplash.com/VLg5MhJLTds/1080x300" class="d-block w-100 px-0" alt="...">
+            </div>
+        </div>
+    </div>
+</div>
+
+<h1 class="text-center my-3"></h1>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="mbr-white col-md-20">
+            <h2 class="mbr-section-title align-left  pb-3 mbr-fonts-style display-1">View Customer </h2><hr>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    {%if vc%}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for s in vc %}
+            <tr>
+
+                <td>{{s.name}}</td>
+                <td>{{s.amount}}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+        {% endif %}
+    </table>
+</div>
+
+<div class="container d-flex justify-content-center">
+    <div class="card mb-5 mt-5 w-75 shadow-lg p-3 mb-5 bg-white rounded">
+    <form method="post" class="text-center">
+        {% csrf_token %}
+        <label for="bookname" class="form-label  mt-5 h3"><b>Select A Customer To View Details: </b></label></br>
+        <select class="form-select  mt-5 " aria-label="Default select example" id="name" name="name">
+            {% for c in vc %}
+             <option value="" disabled selected hidden>--------Select Name--------</option>
+            <option value="{{c.name}}">{{c.name}}</option>
+            {% endfor %}
+        </select>
+
+      </br><button type="submit" class="btn btn-primary btn-lg btn-block mt-3 mb-5">View</button>
+
+
+    </form>
+
+    <div class="container " style="font-size: 20px; font-weight:normal">
+    {%if cv%}
+
+    <label class="form-label  mt-1 "><b>Customer ID :</b>{{ cv.customer_id }}</label></br>
+    <label class="form-label  mt-1 "><b>Name : </b>{{ cv.name }}</label></br>
+    <label class="form-label  mt-1 "><b>Phone Number : </b>{{ cv.phone }}</label></br>
+    <label class="form-label  mt-1 "><b>Email ID : </b>{{ cv.email }}</label></br>
+    <label class="form-label  mt-1 "><b>Amount : </b></label>{{ cv.amount }}</br>
+
+        {% endif %}
+
+   
+
+
+
+    </div>
+</div>
+
+
+
+</div>
+
+
+{% endblock body %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Transaction History{% endblock title %}
+
+{% block body %}
+
+<div class="container-fluid px-0">
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active ">
+                <img src="https://source.unsplash.com/dAmHWsRYP9c/1080x300" class="d-block w-100 px-0" alt="...">
+            </div>
+        </div>
+    </div>
+</div>
+
+<h1 class="text-center my-3"></h1>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="mbr-white col-md-20">
+            <h2 class="mbr-section-title align-left  pb-3 mbr-fonts-style display-1 ">Transaction History</h2><hr>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-5">
+    {%if tc%}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Sender</th>
+                <th scope="col">Recviver</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for t in tc %}
+            <tr>
+
+                <td>{{t.sname}}</td>
+                <td>{{t.rname}}</td>
+                <td>{{t.money}}</td>
+                <td>{{t.tdate}}</td>
+
+            </tr>
+            {% endfor %}
+
+        </tbody>
+        {% endif %}
+    </table>
+</div>
+
+
+
+
+<div class="mb-5">
+</div>
+
+{% endblock body %}
